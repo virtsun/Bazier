@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E066AE01-A6E0-4392-9180-B773F97E4463</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BazierMaker</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>bc0fe62a-8069-489e-d2d3-ce57b7db7bff</key>
+		<string>https://github.com/virtsun/BezierMaker.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BazierMaker/BazierMaker.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>bc0fe62a-8069-489e-d2d3-ce57b7db7bff</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>bc0fe62a-8069-489e-d2d3-ce57b7db7bff</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>bc0fe62a-8069-489e-d2d3-ce57b7db7bff</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BezierMaker.git</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>BazierMaker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>F1CA5EDE1AD5435600B4FCEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1CA5EF31AD5435600B4FCEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1CA5F071AD5724A00B4FCEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1CA5F181AD5724A00B4FCEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1CA5F271AD5727700B4FCEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
