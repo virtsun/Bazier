@@ -58,8 +58,8 @@
 		F1CA5EE11AD5435600B4FCEF /* BazierMaker */ = {
 			isa = PBXGroup;
 			children = (
-				F12503911AD8CBF7006AA83F /* BazerMaker.swift */,
 				F1FB9D3D1ADD33620061D2EC /* utils */,
+				F12503911AD8CBF7006AA83F /* BazerMaker.swift */,
 				F1CA5EE41AD5435600B4FCEF /* AppDelegate.swift */,
 				F1CA5EE61AD5435600B4FCEF /* ViewController.swift */,
 				F1CA5EE81AD5435600B4FCEF /* Main.storyboard */,
