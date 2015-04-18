@@ -70,8 +70,8 @@ class ViewController: UIViewController, BazerMakeDelege{
         
         anim = UIButton(frame: CGRectMake(CGRectGetWidth(self.view.bounds) - 80, CGRectGetHeight(self.view.bounds) - 80, 60, 60));
         anim.setTitle("Anim", forState: UIControlState.Normal)
-        anim.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
-        anim.setTitleColor(UIColor.redColor().colorWithAlphaComponent(0.6), forState: UIControlState.Normal)
+        anim.setTitleColor(UIColor.brownColor(), forState: UIControlState.Normal)
+        anim.setTitleColor(UIColor.brownColor().colorWithAlphaComponent(0.6), forState: UIControlState.Highlighted)
         
         anim.addTarget(self, action: "selectAnim:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -106,6 +106,19 @@ class ViewController: UIViewController, BazerMakeDelege{
         shape.path = path;
         
         self.view.layer.addSublayer(shape)
+        
+        
+        var slider = UISlider()
+        slider.frame = CGRectMake(CGRectGetWidth(self.view.bounds)/2 - 150, CGRectGetHeight(self.view.bounds) - 20, 300, 10)
+        slider.minimumValue = 0
+        slider.maximumValue = 2
+        slider.addTarget(self, action: "updateDuration:", forControlEvents: UIControlEvents.ValueChanged)
+        self.view.addSubview(slider)
+    }
+    var duration: CFTimeInterval = 1
+
+    func updateDuration(sender:UISlider){
+        duration = CFTimeInterval(sender.value)
     }
     
     func apply(sender:UIButton){
@@ -146,8 +159,6 @@ class ViewController: UIViewController, BazerMakeDelege{
     var animSelections = NSMutableArray()
     
     func selectAnim(sender:UIButton){
-        
-        var duration: CFTimeInterval = 3
         
         GeneralAnimations.shared().addAnimationForLayer(sender.layer,
             keyPath: "transform.scale",
@@ -221,6 +232,8 @@ class ViewController: UIViewController, BazerMakeDelege{
               
                 a.setTitle(str, forState: UIControlState.Normal)
                 a.setTitleColor(UIColor.brownColor(), forState: UIControlState.Normal)
+                a.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Highlighted)
+
                 a.titleLabel!.font = UIFont.systemFontOfSize(14)
                 a.backgroundColor = UIColor.lightGrayColor()
                 
