@@ -26,6 +26,7 @@ class ViewController: UIViewController, BazerMakeDelege{
         super.viewWillAppear(animated);
     }
     
+    var anim : UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -67,12 +68,20 @@ class ViewController: UIViewController, BazerMakeDelege{
         reset.addTarget(self, action: "reset:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(reset)
         
-        var anim = UIButton(frame: CGRectMake(CGRectGetWidth(self.view.bounds) - 60, CGRectGetHeight(self.view.bounds) - 50, 60, 20));
+        anim = UIButton(frame: CGRectMake(CGRectGetWidth(self.view.bounds) - 80, CGRectGetHeight(self.view.bounds) - 80, 60, 60));
         anim.setTitle("Anim", forState: UIControlState.Normal)
         anim.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
         anim.setTitleColor(UIColor.redColor().colorWithAlphaComponent(0.6), forState: UIControlState.Normal)
         
         anim.addTarget(self, action: "selectAnim:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        anim.backgroundColor = UIColor.lightGrayColor()
+        
+        anim.layer.cornerRadius = 30
+        anim.layer.shadowColor = UIColor.darkGrayColor().CGColor
+        anim.layer.shadowOffset = CGSizeMake(2, 2)
+        anim.layer.shadowOpacity = 1
+        
         self.view.addSubview(anim)
     }
 
@@ -138,36 +147,112 @@ class ViewController: UIViewController, BazerMakeDelege{
     
     func selectAnim(sender:UIButton){
         
+        var duration: CFTimeInterval = 3
+        
+        GeneralAnimations.shared().addAnimationForLayer(sender.layer,
+            keyPath: "transform.scale",
+            fromValue: 0.8,
+            toValue:  1,
+            duration: duration,
+            timeFunction: CAMediaTimingFunction(controlPoints: maker.x1, maker.x2, maker.y1, maker.y2),
+            fileMode: kCAFillModeForwards,
+            autoReverse: false,
+            removedOnCompleted: false,
+            completion: { () -> Void in
+                
+        })
+        
         if animationsShowed{
         
+            
             for v in animSelections{
-                v.removeFromSuperview();
+                let tmp:UIButton = v as! UIButton
+                
+                GeneralAnimations.shared().addAnimationForLayer(tmp.layer,
+                    keyPath: "position",
+                    fromValue: NSValue(CGPoint:tmp.center),
+                    toValue:  NSValue(CGPoint:anim.center),
+                    duration: duration,
+                    timeFunction: CAMediaTimingFunction(controlPoints: maker.x1, maker.x2, maker.y1, maker.y2),
+                    fileMode: kCAFillModeForwards,
+                    autoReverse: false,
+                    removedOnCompleted: false,
+                    completion: { () -> Void in
+                        
+                })
+                
+                GeneralAnimations.shared().addAnimationForLayer(tmp.layer,
+                    keyPath: "transform.scale",
+                    fromValue: 1,
+                    toValue:  0,
+                    duration: duration,
+                    timeFunction: CAMediaTimingFunction(controlPoints: maker.x1, maker.x2, maker.y1, maker.y2),
+                    fileMode: kCAFillModeForwards,
+                    autoReverse: false,
+                    removedOnCompleted: false,
+                    completion: { () -> Void in
+                        tmp.removeFromSuperview()
+                })
             }
+            
+           
             animSelections.removeAllObjects()
             
         }else{
             var off: CGFloat = 0.0
+            var i :Double = 0.0
             
+            var radius = 100.0
             for dic in animations{
                 var a = UIButton();
                 var str = dic["name"]
                 var size = str!.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(14)])
            
+                size = CGSizeMake(50, 50)
+                var angle = M_PI_2 * (i++) / 3;
+                var offX = cos(angle) * radius
+                var offY = sin(angle) * radius
+                
                 off += size.width + 20
-                a.frame = CGRectMake(CGRectGetMinX(sender.frame) - off, CGRectGetMinY(sender.frame), size.width, size.height)
+                a.frame = CGRectMake(CGRectGetMinX(sender.frame) - CGFloat(offX),
+                    CGRectGetMinY(sender.frame) - CGFloat(offY),
+                    size.width,
+                    size.width)
               
                 a.setTitle(str, forState: UIControlState.Normal)
-                a.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+                a.setTitleColor(UIColor.brownColor(), forState: UIControlState.Normal)
                 a.titleLabel!.font = UIFont.systemFontOfSize(14)
-          //      a.backgroundColor = UIColor.lightTextColor()
+                a.backgroundColor = UIColor.lightGrayColor()
+                
+                a.layer.cornerRadius = size.width / 2
+//                a.layer.borderWidth = 0.5
+//                
+//                a.layer.borderColor = UIColor.lightGrayColor().CGColor
+                a.layer.shadowColor = UIColor.darkGrayColor().CGColor
+                a.layer.shadowOffset = CGSizeMake(2, 2)
+                a.layer.shadowOpacity = 1
+                
                 self.view .addSubview(a)
                 animSelections.addObject(a)
                 
                 GeneralAnimations.shared().addAnimationForLayer(a.layer,
-                    keyPath: "transform.translation.x",
-                    fromValue: off - size.width/2,
-                    toValue:  0,
-                    duration: 0.3,
+                    keyPath: "position",
+                    fromValue: NSValue(CGPoint:anim.center),
+                    toValue:  NSValue(CGPoint:a.center),
+                    duration: duration,
+                    timeFunction: CAMediaTimingFunction(controlPoints: maker.x1, maker.x2, maker.y1, maker.y2),
+                    fileMode: kCAFillModeForwards,
+                    autoReverse: false,
+                    removedOnCompleted: false,
+                    completion: { () -> Void in
+                        
+                })
+                
+                GeneralAnimations.shared().addAnimationForLayer(a.layer,
+                    keyPath: "transform.scale",
+                    fromValue: 0,
+                    toValue:  1,
+                    duration: duration,
                     timeFunction: CAMediaTimingFunction(controlPoints: maker.x1, maker.x2, maker.y1, maker.y2),
                     fileMode: kCAFillModeForwards,
                     autoReverse: false,
