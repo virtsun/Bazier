@@ -51,7 +51,7 @@ class BazerMaker: UIView{
     var delegate: BazerMakeDelege?
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     override init(frame: CGRect) {
@@ -65,7 +65,7 @@ class BazerMaker: UIView{
     func makeLayout() {
         
         if canvas != nil{
-            for layer in canvas.sublayers{
+            for layer in canvas.sublayers!{
                 layer.removeFromSuperlayer();
             }
         }else{
@@ -97,9 +97,9 @@ class BazerMaker: UIView{
         
         //添加刻度
         for (var i :Int = 0; i < 5; i++){
-            var mark = CATextLayer();
+            let mark = CATextLayer();
             
-            var attrString = NSMutableAttributedString(string: array[i]);
+            let attrString = NSMutableAttributedString(string: array[i]);
 
             attrString.addAttribute(
                 kCTForegroundColorAttributeName as String,
@@ -108,9 +108,9 @@ class BazerMaker: UIView{
             
             mark.string = attrString;
             
-            var tmp = Double(i) / 4.0;
-            var x = CGRectGetWidth(control.bounds) * CGFloat(tmp);
-            var p = Coordination.coord(coordReference, x: x, y: 0)
+            let tmp = Double(i) / 4.0;
+            let x = CGRectGetWidth(control.bounds) * CGFloat(tmp);
+            let p = Coordination.coord(coordReference, x: x, y: 0)
             mark.frame = CGRectMake(p.x, p.y, 30, 20);
             
             mark.font = UIFont.smallSystemFontSize();
@@ -119,9 +119,9 @@ class BazerMaker: UIView{
         }
         
         for (var i :Int = 1; i < 5; i++){
-            var mark = CATextLayer();
+            let mark = CATextLayer();
             
-            var attrString = NSMutableAttributedString(string: array[i]);
+            let attrString = NSMutableAttributedString(string: array[i]);
             
             attrString.addAttribute(
                 kCTForegroundColorAttributeName as String,
@@ -130,8 +130,8 @@ class BazerMaker: UIView{
             
             mark.string = attrString;
             
-            var tmp = Double(i) / 4.0;
-            var p = Coordination.coord(coordReference, x: 0, y: CGRectGetHeight(control.bounds) * CGFloat(tmp))
+            let tmp = Double(i) / 4.0;
+            let p = Coordination.coord(coordReference, x: 0, y: CGRectGetHeight(control.bounds) * CGFloat(tmp))
             
             mark.alignmentMode = kCAAlignmentRight
             mark.frame = CGRectMake(p.x - 30, p.y, 30, 20)
@@ -164,7 +164,7 @@ class BazerMaker: UIView{
         
         bezier.path = path.CGPath
         
-        var pin = UIPanGestureRecognizer(target: self, action:"pan:")
+        let pin = UIPanGestureRecognizer(target: self, action:"pan:")
         
         self.addGestureRecognizer(pin)
     }
@@ -202,7 +202,7 @@ class BazerMaker: UIView{
             break;
         case UIGestureRecognizerState.Changed:
             
-            var changed = gesture.locationInView(self)
+            let changed = gesture.locationInView(self)
             if (leftPressed == true){
                 ctrl1 = CGPoint(x: ctrl1.x + (changed.x - location.x) / 2, y: ctrl1.y + (changed.y - location.y)/2)
             }
@@ -245,11 +245,11 @@ class BazerMaker: UIView{
         
         //传给delegate
         
-        var tmp1 = Coordination.reCoord(bezier, x: ctrl1.x, y: ctrl1.y)
+        let tmp1 = Coordination.reCoord(bezier, x: ctrl1.x, y: ctrl1.y)
         x1 = Float(tmp1.x)
         y1 = Float(tmp1.y)
         
-        var tmp2 = Coordination.reCoord(bezier, x: ctrl2.x, y: ctrl2.y)
+        let tmp2 = Coordination.reCoord(bezier, x: ctrl2.x, y: ctrl2.y)
         x2 = Float(tmp2.x)
         y2 = Float(tmp2.y)
         

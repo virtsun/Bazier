@@ -19,7 +19,7 @@ class ViewController: UIViewController, BazerMakeDelege{
     var maker : BazerMaker!
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,7 +52,7 @@ class ViewController: UIViewController, BazerMakeDelege{
         
         addItem()
         
-        var apply = UIButton(frame: CGRectMake(CGRectGetWidth(self.view.bounds) - 60, 20, 60, 20));
+        let apply = UIButton(frame: CGRectMake(CGRectGetWidth(self.view.bounds) - 60, 20, 60, 20));
         apply.setTitle("Go", forState: UIControlState.Normal)
         apply.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
         apply.setTitleColor(UIColor.redColor().colorWithAlphaComponent(0.6), forState: UIControlState.Normal)
@@ -60,7 +60,7 @@ class ViewController: UIViewController, BazerMakeDelege{
         apply.addTarget(self, action: "apply:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(apply)
         
-        var reset = UIButton(frame: CGRectMake(CGRectGetWidth(self.view.bounds) - 60, 60, 60, 20));
+        let reset = UIButton(frame: CGRectMake(CGRectGetWidth(self.view.bounds) - 60, 60, 60, 20));
         reset.setTitle("Reset", forState: UIControlState.Normal)
         reset.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
         reset.setTitleColor(UIColor.redColor().colorWithAlphaComponent(0.6), forState: UIControlState.Normal)
@@ -94,7 +94,7 @@ class ViewController: UIViewController, BazerMakeDelege{
         shape.lineWidth = 5;
         shape.strokeColor = UIColor.brownColor().CGColor;
         //     shape.backgroundColor = UIColor.blueColor().CGColor
-        var path = CGPathCreateMutable();
+        let path = CGPathCreateMutable();
         
         CGPathAddEllipseInRect(path, nil, shape.bounds);
         
@@ -108,7 +108,7 @@ class ViewController: UIViewController, BazerMakeDelege{
         self.view.layer.addSublayer(shape)
         
         
-        var slider = UISlider()
+        let slider = UISlider()
         slider.frame = CGRectMake(CGRectGetWidth(self.view.bounds)/2 - 150, CGRectGetHeight(self.view.bounds) - 20, 300, 10)
         slider.minimumValue = 0
         slider.maximumValue = 2
@@ -213,16 +213,16 @@ class ViewController: UIViewController, BazerMakeDelege{
             var off: CGFloat = 0.0
             var i :Double = 0.0
             
-            var radius = 100.0
+            let radius = 100.0
             for dic in animations{
-                var a = UIButton();
-                var str = dic["name"]
+                let a = UIButton();
+                let str = dic["name"]
                 var size = str!.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(14)])
            
                 size = CGSizeMake(50, 50)
-                var angle = M_PI_2 * (i++) / 3;
-                var offX = cos(angle) * radius
-                var offY = sin(angle) * radius
+                let angle = M_PI_2 * (i++) / 3;
+                let offX = cos(angle) * radius
+                let offY = sin(angle) * radius
                 
                 off += size.width + 20
                 a.frame = CGRectMake(CGRectGetMinX(sender.frame) - CGFloat(offX),

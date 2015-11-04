@@ -33,7 +33,7 @@ class GeneralAnimations: NSObject {
         removedOnCompleted:Bool,
         completion:(()->Void)?)->CABasicAnimation{
             
-            var ani = CABasicAnimation(keyPath: keyPath);
+            let ani = CABasicAnimation(keyPath: keyPath);
             ani.fromValue = fromValue;
             ani.toValue = toValue;
             ani.duration = duration;
@@ -45,25 +45,25 @@ class GeneralAnimations: NSObject {
             
             layer.addAnimation(ani, forKey: ani.keyPath)
             
-            var anim = layer.animationForKey(ani.keyPath);
-            _completions[anim] = completion;
+            let anim = layer.animationForKey(ani.keyPath!);
+            _completions[anim!] = completion;
             
             return ani;
     }
 
     class func transform3DValue(angle:CGFloat, disZ:CGFloat)->CATransform3D{
         
-        var transloate = CATransform3DMakeTranslation(0, 0, -200);
-        var rotate = CATransform3DMakeRotation(angle, 0, 1, 0);
-        var mat = CATransform3DConcat(rotate, transloate);
+        let transloate = CATransform3DMakeTranslation(0, 0, -200);
+        let rotate = CATransform3DMakeRotation(angle, 0, 1, 0);
+        let mat = CATransform3DConcat(rotate, transloate);
         
         return CATransform3DPerspect(mat, center:CGPointZero, disZ: disZ);
     }
     
     class func CATransform3DMakePerspective(center:CGPoint, disZ:CGFloat)->CATransform3D
     {
-        var transToCenter = CATransform3DMakeTranslation(-center.x, -center.y, 0);
-        var transBack = CATransform3DMakeTranslation(center.x, center.y, 0);
+        let transToCenter = CATransform3DMakeTranslation(-center.x, -center.y, 0);
+        let transBack = CATransform3DMakeTranslation(center.x, center.y, 0);
         var scale = CATransform3DIdentity;
         scale.m34 = -1.0/disZ;
         return CATransform3DConcat(CATransform3DConcat(transToCenter, scale), transBack);
@@ -74,7 +74,7 @@ class GeneralAnimations: NSObject {
         return CATransform3DConcat(t, CATransform3DMakePerspective(center, disZ: disZ));
     }
 
-    override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
+    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
     
         if flag{
             let completion = _completions[anim]
